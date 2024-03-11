@@ -25,7 +25,11 @@ const Header = () => {
                 <Link className='hover:text-gray-500/50 transition-colors' to={'/'}>Главная</Link>
                 <Link className='hover:text-gray-500/50 transition-colors' to={'/services'}>Услуги</Link>
                 <Link className='hover:text-gray-500/50 transition-colors' to={'/contacts'}>Контакты</Link>
-                <Link className='hover:text-gray-500/50 transition-colors' to={'/Profile'}>Личный кабинет</Link>
+                {
+                  isAuth?<Link className='hover:text-gray-500/50 transition-colors' to={`/Profile/${user?.id}`}>Личный кабинет</Link>
+                  :<Link className='hover:text-gray-500/50 transition-colors' to={'/Auth'}>Войти</Link>
+                }
+                
           
             </nav>
         </div>

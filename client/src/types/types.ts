@@ -13,3 +13,17 @@ export interface IType{
     img: string
     typeId: number
   }
+
+  export interface IOrder{
+    adress: string
+    car: ICar,
+    carId: number
+    date: string
+    description: string
+    duraction: string
+    id:number,
+    name: string,
+    phoneNumber: string
+    status: string
+    userId: number
+  }

@@ -4,16 +4,33 @@ import { removeTokenFromLocalStorage } from '../../helpers/localStorage.helper'
 import { logout } from '../../store/reducers/user.reducer'
 import { useDispatch } from 'react-redux'
 import { useAuth } from '../../hooks/useAuth.hook'
+import { instance } from '../../api/axios.api'
+import { useLoaderData, useNavigate } from 'react-router-dom'
+import { useUser } from '../../hooks/useUser.hook'
+import { IOrder } from '../../types/types'
+import OrdersTableRow from './OrdersTableRow'
 
-const OrdersTable = () => {
 
+interface ITableProps{
+    orders: IOrder[]
+}
+
+
+const OrdersTable = ({orders}:ITableProps) => {
+
+
+    const user = useUser()
     const dispatch = useDispatch()    
     const isAuth = useAuth()
+    const navigate = useNavigate()
+
+
 
     const logoutHandler = ()=>{
         dispatch(logout())
         removeTokenFromLocalStorage('token')
-        toast.success('You logged out!')
+        
+        navigate('/auth')
       }
 
     
@@ -26,11 +43,12 @@ const OrdersTable = () => {
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mb-20">
                 <thead className="text-lg text-white uppercase  bg-amber-400">
                     <tr>
-                        <th scope="col" className="px-8 py-4 text-center">
-                            Тип 
-                        </th>
+                   
                         <th scope="col" className="px-8 py-4 text-center">
                             Модель
+                        </th>
+                        <th scope="col" className="px-8 py-4 text-center">
+                            Адрес
                         </th>
                         <th scope="col" className="px-8 py-4 text-center">
                             Дата
@@ -41,21 +59,11 @@ const OrdersTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className="bg-gray-200 p-10 rounded-lg  border-b ">
-                        <th scope="row" className="px-6 py-4 font-medium text-base text-center text-gray-900 whitespace-nowrap ">
-                            Эвакуатор
-                        </th>
-                        <td className="px-6 py-4 text-gray-900 text-base text-center">
-                            Hyundai HD 78
-
-                        </td>
-                        <td className="px-6 py-4 text-gray-900 text-base text-center">
-                            20.11.2024
-                        </td>
-                        <td className="px-6 py-4 text-gray-900 text-base text-center">
-                            Завершен
-                        </td>
-                    </tr>
+                    {
+                        orders.map((el,i)=> (
+                            <OrdersTableRow order={el} key={i}/>
+                        ) )
+                    }
                 </tbody>
             </table>
 

@@ -3,7 +3,9 @@ import Layout from "../pages/Layout";
 import Home from "../pages/Home";
 import Services, { servicesLoader } from "../pages/Services";
 import Contacts from "../pages/Contacts";
-import Profile from "../pages/Profile";
+import Profile, { ordersLoader } from "../pages/Profile";
+import Auth from "../pages/Auth";
+import Admin, { adminLoader } from "../pages/Admin";
 
 export const router = createBrowserRouter([
     {
@@ -24,8 +26,18 @@ export const router = createBrowserRouter([
                 element: <Contacts/>
             },
             {
-                path: 'profile',
-                element: <Profile/>
+                path: 'profile/:id',
+                element: <Profile/>,
+                loader: ordersLoader
+            },
+            {
+                path: 'auth',
+                element: <Auth/>
+            },
+            {
+                path: 'admin',
+                element: <Admin/>,
+                loader: adminLoader
             }
         ]
     }

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { ModalContext } from '../../context/modal.context';
 import { useAuth } from '../../hooks/useAuth.hook';
@@ -17,6 +17,8 @@ export interface ICarsProps{
 const Serivice = ({title , cars}:ICarsProps) => {
 
 
+  const [carId, setCarId] = useState()
+
   const isAuth = useAuth()
 
   const {modal, close, open} = useContext(ModalContext)
@@ -27,11 +29,8 @@ const Serivice = ({title , cars}:ICarsProps) => {
   
   const сloseModalHandler = () => close()
 
-  const btnWrapper = ()=>{
-    toast.success('Поеда!)')
-  }
-    
 
+    
 
   return (
     <div className="bg-gray-200 p-10 rounded-lg mb-20">
@@ -40,18 +39,23 @@ const Serivice = ({title , cars}:ICarsProps) => {
 
         {
           cars.map((el,i)=> (
-            <Car title={el.title} text={el.description} key={i} id={el.id} type={title} price={el.price} img={el.img}/>
+            
+            <Car title={el.title} text={el.description} key={i} id={el.id} type={title} price={el.price} img={el.img} setCarId={setCarId}/>
           )) 
         }
            
       
       </ul>
 
-    <button onClick={openModalHandler} type="submit" className="mt-8 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-3xl px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Заказать</button>
+    <button onClick={()=>{
+        openModalHandler()
+
+      }
+      } type="submit" className="mt-8 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-3xl px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">Заказать</button>
      {
-        modal&&
+        modal&&carId&&
                 <Modal title='Оформление заказа' onClose={сloseModalHandler}>
-                    <OrderForm serviceId={1}/>
+                    <OrderForm carId={carId}/>
                 </Modal>
       }
   </div>

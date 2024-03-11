@@ -4,14 +4,16 @@ import { setTokenToLocalStorage } from '../../helpers/localStorage.helper'
 import { instance } from '../../api/axios.api'
 import { IUser, login } from '../../store/reducers/user.reducer'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useUser } from '../../hooks/useUser.hook'
 
 const AuthForm = () => {
 
     const [email , setEmail] = useState('')
     const [password , setPassword] = useState('')
     const dispatch = useDispatch()
-
-
+    const navigate = useNavigate()
+    const user = useUser()
 
     const loginHandler = async (e:React.MouseEvent)=>{
     
@@ -29,6 +31,7 @@ const AuthForm = () => {
               dispatch(login({user:data}))
     
               toast.success('Вы успешно авторизировались!')
+              navigate(`/profile/${data.id}`)
           }else{
             toast.error('Неверные данные!')
            }

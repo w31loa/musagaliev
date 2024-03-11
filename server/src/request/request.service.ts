@@ -1,23 +1,54 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRequestDto } from './dto/create-request.dto';
 import { UpdateRequestDto } from './dto/update-request.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class RequestService {
-  create(createRequestDto: CreateRequestDto) {
-    return 'This action adds a new request';
+  
+  constructor(private readonly prisma:PrismaService){}
+  
+  async create(createRequestDto: Prisma.RequestCreateInput) {
+
+    const req = await this.prisma.request.create({data: createRequestDto})
+
+    return req;
   }
 
-  findAll() {
-    return `This action returns all request`;
+  async findAll() {
+    return  await this.prisma.request.findMany({
+      include:{
+        car: true
+      },
+      orderBy:{
+        status: 'desc'
+      }
+    });
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} request`;
+    return 0;
   }
 
-  update(id: number, updateRequestDto: UpdateRequestDto) {
-    return `This action updates a #${id} request`;
+  async findOneByUser(userId:number){
+    return await this.prisma.request.findMany({
+      where:{
+        userId
+      },
+      include:{
+        car: true
+      }
+    })
+  }
+
+  async update(id: number, updateRequestDto: Prisma.RequestUpdateInput) {
+    return await this.prisma.request.update({
+      where:{
+        id
+      },
+      data: updateRequestDto
+    });
   }
 
   remove(id: number) {
