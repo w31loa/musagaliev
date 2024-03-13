@@ -1,11 +1,17 @@
 import React from 'react'
+import Marquee from "react-fast-marquee";
 
 const Why = () => {
   return (
-        <div className=' mb-20 container m-auto'>
-            <div className="text-6xl my-20 text-center" >Почему мы?</div>
+        <div className=' mb-20  container m-auto'>
+        
+    
+                
+                    <Marquee className='absolute left-0' autoFill={true}>
+                    <div className="text-6xl my-20 text-center text-white " >Почему мы? </div>
+                    </Marquee>
 
-            <div className="flex justify-between gap-10 px-20">
+            <div className="flex justify-between gap-10 px-20 pt-52">
 
                 <div className="w-3/12 flex flex-col justify-center items-center">
                     <img src="/why/1.png" alt="" className="h-28 mb-3"/>

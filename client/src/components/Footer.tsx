@@ -5,7 +5,7 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 const Footer = () => {
 
   return (
-    <div className="text-black bg-gradient-to-t from-[#ffcc33] to-[#ffcc3386] p-5 flex flex-col justify-center  items-center font-medium font-['Franklin_Gothic']">
+    <div className="text-white bg-gradient-to-t bg-orange-500 p-5 flex flex-col justify-center  items-center font-medium font-['Franklin_Gothic']">
 
         <div className="container">
             <div className='flex justify-around px-20 text-1xl'>

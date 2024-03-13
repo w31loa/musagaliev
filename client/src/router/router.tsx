@@ -6,6 +6,7 @@ import Contacts from "../pages/Contacts";
 import Profile, { ordersLoader } from "../pages/Profile";
 import Auth from "../pages/Auth";
 import Admin, { adminLoader } from "../pages/Admin";
+import Redact from "../pages/Redact";
 
 export const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
                 path: 'admin',
                 element: <Admin/>,
                 loader: adminLoader
+            },
+            {
+                path: 'redact',
+                element: <Redact/>
             }
         ]
     }

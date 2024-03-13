@@ -9,6 +9,9 @@ interface ITableProps{
 
 
 const OrdersTable = ({orders}:ITableProps) => {
+
+
+
   return (
     <div>
     <div className="relative overflow-x-auto">
@@ -49,9 +52,14 @@ const OrdersTable = ({orders}:ITableProps) => {
             </thead>
             <tbody>
                 {
+                  
                     orders.map((el,i)=> (
                         <TableRow order={el} key={i}/>
                     ) )
+                   
+                 
+                        
+                  
                 }
             </tbody>
         </table>

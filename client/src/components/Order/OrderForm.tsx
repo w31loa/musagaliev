@@ -96,7 +96,7 @@ const OrderForm = ({carId}) => {
               
               </div>
 
-              <button   type="submit" className="focus:outline-none text-white bg-amber-400 hover:bg-amber-300 focus:ring-4 focus:ring-red-300 rounded-lg text-2xl w-full px-5 py-2.5 me-2 mb-2">Отправить!</button>
+              <button   type="submit" className="focus:outline-none text-white bg-orange-400 hover:bg-amber-300 focus:ring-4 focus:ring-red-300 rounded-lg text-2xl w-full px-5 py-2.5 me-2 mb-2">Отправить!</button>
 
         </Form>
     </div>

@@ -13,9 +13,23 @@ const AuthForm = () => {
     const [password , setPassword] = useState('')
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [isLogin, setIsLogin] = useState(true)
+
     const user = useUser()
 
-    const loginHandler = async (e:React.MouseEvent)=>{
+
+    
+    const regBtnHandler = (e)=>{
+
+      setIsLogin(false)
+    }
+
+    const logBtnHandler = (e)=>{
+     
+      setIsLogin(true)
+    }
+
+    const loginHandler = async (e)=>{
     
         e.preventDefault()
     
@@ -29,9 +43,10 @@ const AuthForm = () => {
           if(data){
               setTokenToLocalStorage('token', data.access_token)
               dispatch(login({user:data}))
-    
-              toast.success('Вы успешно авторизировались!')
+
               navigate(`/profile/${data.id}`)
+              toast.success('Вы успешно авторизировались!')
+              
           }else{
             toast.error('Неверные данные!')
            }
@@ -44,7 +59,7 @@ const AuthForm = () => {
         }  
     } 
 
-    const registrationHandler = async(e:React.MouseEvent)=>{
+    const registrationHandler = async(e)=>{
         try {
           e.preventDefault()
           const data = await instance.post('/user' ,  {email,password})
@@ -59,9 +74,9 @@ const AuthForm = () => {
        
 
   return (
-        <div className='flex w-full justify-between mt-10'>
+        <div className='flex w-full justify-between mt-10 mb-auto'>
 
-                <form className="w-96 mx-auto" >
+                <form className="w-96 mx-auto" onSubmit={isLogin?loginHandler:registrationHandler} >
                     <p className='text-4xl  border-b-2 pb-5 border-b-amber-400 font-medium text-center mb-5 text-gray-900'>Авторизация</p>
                      <div className="mb-5">    
                     <label htmlFor="email" className="block mb-2 text-xl font-medium text-gray-900">Введите почту</label>
@@ -88,12 +103,12 @@ const AuthForm = () => {
 
                         <div className=" flex flex-col gap-3">
                             <button onClick={(e)=>{
-                                loginHandler(e)
-                            }} type="submit" className="px-10 py-3 bg-amber-400 rounded-md text-center text-lg hover:bg-amber-300  transition-colors" >Войти</button>
+                                logBtnHandler(e)
+                            }} type="submit" className="px-10 py-3 bg-orange-400 rounded-md text-center text-lg hover:bg-amber-300  transition-colors" >Войти</button>
 
                             <button onClick={(e)=>{
-                                registrationHandler(e)
-                            }} type="submit" className="text-lg hover:text-amber-400">Зарегестрироваться</button>
+                                regBtnHandler(e)
+                            }} type="submit" className="text-lg text-black hover:text-amber-400">Зарегестрироваться</button>
                         </div>
                         
                     

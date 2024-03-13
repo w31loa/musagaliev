@@ -7,18 +7,18 @@ import toast from 'react-hot-toast'
 
 
 interface IRow{
-    order: IOrder
+    order?: IOrder
 }
 
 
 const TableRow = ({order}:IRow) => {
 
-    const [status, setStatus] = useState(order.status)
+    const [status, setStatus] = useState(order?.status)
 
     const doneBtnHandler = ()=>{
-        instance.patch(`/request/${order.id}`, {status:'DONE'})
+        instance.patch(`/request/${order?.id}`, {status:'DONE'})
         setStatus("DONE")
-        toast.success(`Заказ ${order.id} завершен`)
+        toast.success(`Заказ ${order?.id} завершен`)
     }
 
 
@@ -26,35 +26,35 @@ const TableRow = ({order}:IRow) => {
     <tr className="bg-gray-200 p-10 rounded-lg  border-b-2 border-slate-300 ">
  
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {order.id}
+            {order?.id}
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {order.phoneNumber}
+            {order?.phoneNumber}
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {formatDateFromIsoToLocal(order.date)}
+            {order?formatDateFromIsoToLocal(order?.date):<></>}
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {order.name}
+            {order?.name}
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {order.duraction}ч.
+            {order?.duraction}ч.
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {order.adress}
+            {order?.adress}
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {order.car.title}
+            {order?.car.title}
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base  max-w-96 text-left">
-            {order.description}
+            {order?.description}
 
         </td>
     

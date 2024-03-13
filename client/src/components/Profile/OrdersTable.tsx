@@ -24,7 +24,7 @@ const OrdersTable = ({orders}:ITableProps) => {
     const isAuth = useAuth()
     const navigate = useNavigate()
 
-
+    console.log()
 
     const logoutHandler = ()=>{
         dispatch(logout())
@@ -38,10 +38,10 @@ const OrdersTable = ({orders}:ITableProps) => {
   return (
     <div>
         <div className="relative overflow-x-auto">
-            <div className="text-5xl text-center mb-20 mt-10 ">Ваши заказы</div>
+            <div className="text-5xl text-center mb-20 mt-10 ">История заказов</div>
             
             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mb-20">
-                <thead className="text-lg text-white uppercase  bg-amber-400">
+                <thead className="text-lg text-white uppercase  bg-gray-600">
                     <tr>
                    
                         <th scope="col" className="px-8 py-4 text-center">
@@ -60,9 +60,10 @@ const OrdersTable = ({orders}:ITableProps) => {
                 </thead>
                 <tbody>
                     {
-                        orders.map((el,i)=> (
+                        orders.length?orders.map((el,i)=> (
                             <OrdersTableRow order={el} key={i}/>
                         ) )
+                        :<OrdersTableRow/>
                     }
                 </tbody>
             </table>
