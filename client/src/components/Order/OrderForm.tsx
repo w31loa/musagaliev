@@ -43,7 +43,7 @@ const OrderForm = ({carId}) => {
         }
 
         console.log(data)
-        instance.post('/request' , data)
+        // instance.post('/request' , data)
         toast.success('Заявка отправлена!')
         
 
@@ -51,7 +51,7 @@ const OrderForm = ({carId}) => {
 
   
   return (
-    <div>
+    <div className=''>
         <Form onSubmit={sendBtnHandler}>
               <div className="mb-5">    
                 <label htmlFor="email" className="block mb-2 text-xl font-medium text-gray-900 ">Номер телефона</label>

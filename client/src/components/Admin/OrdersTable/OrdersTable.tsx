@@ -18,7 +18,7 @@ const OrdersTable = ({orders}:ITableProps) => {
         <div className="text-5xl text-center mb-20 mt-10 ">Список заказов</div>
         
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mb-20">
-            <thead className="text-lg text-white uppercase  bg-amber-400">
+            <thead className="text-lg text-white uppercase   bg-gray-600">
                 <tr>
                
                     <th scope="col" className="px-8 py-4 text-center">
