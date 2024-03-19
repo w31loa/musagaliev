@@ -50,7 +50,7 @@ const TableRow = ({order}:IRow) => {
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {order?.car.title}
+            {order?.car?.title?order?.car?.title: <div className="text-red-400">'Техника больше не используется'</div> }
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base  max-w-96 text-left">

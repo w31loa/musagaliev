@@ -5,6 +5,10 @@ import { ModalContext } from '../context/modal.context'
 import RedactCategory from '../components/Admin/Redact/RedactCategory'
 import RedactCar from '../components/Admin/Redact/RedactCar'
 import { IoMdAddCircle } from "react-icons/io";
+import Modal from '../components/Modal'
+import OrderForm from '../components/Order/OrderForm'
+import ServiceForm from '../components/Admin/Redact/ServiceForm'
+import CarForm from '../components/Admin/Redact/CarForm'
 
 const Redact = () => {
 
@@ -13,6 +17,9 @@ const Redact = () => {
   const сloseModalHandler = () => close()
 
 
+
+  const[isEdit,setIsEdit] = useState(false)
+ const [isCar, setIsCar] = useState(false)
 
   const[types , setTypes] = useState<IType[]>()
   const[selectedType , setSelectedType] = useState(null)
@@ -34,6 +41,23 @@ const Redact = () => {
     getCarsData()
 }, [])
 
+
+  const [typeToEdit, setTypeToEtid] = useState()
+  const [carToEdit , setCarToEdit] = useState()
+
+
+  const addTypeBtn = ()=>{
+    setIsEdit(false)
+    setIsCar(false)
+    open()
+  }
+
+  const addCarBtn = ()=>{
+    setIsCar(true)
+    setIsEdit(false)
+    open()
+  }
+
   return (
 
 
@@ -41,7 +65,7 @@ const Redact = () => {
         <div className="">
           <div className="text-black text-5xl text-center mt-10 mb-10 flex justify-center items-center gap-3">
               Типы  
-              <button>
+              <button onClick={addTypeBtn}>
                 <IoMdAddCircle className='text-black text-3xl'/>
               </button>
           </div>
@@ -49,7 +73,7 @@ const Redact = () => {
           <div className="flex  flex-col gap-5 items-center">
             {
               types?.map((type,i)=>(
-                <RedactCategory type={type} key={i}/>
+                <RedactCategory type={type} key={i} setIsCar={setIsCar} setIsEdit={setIsEdit} setTypeToEtid={setTypeToEtid}/>
               ))
             }
           </div>
@@ -59,7 +83,7 @@ const Redact = () => {
         <div className="">   
         <div className="text-black text-5xl text-center mt-10 mb-10 flex justify-center items-center gap-3">
               Техника  
-              <button>
+              <button onClick={addCarBtn}>
                 <IoMdAddCircle className='text-black text-3xl'/>
               </button>
           </div>
@@ -67,12 +91,28 @@ const Redact = () => {
             <div className="flex  flex-col gap-5 items-center">
               {
                 cars?.map((car,i)=>(
-                  <RedactCar car={car} key={i}/>
+                  <RedactCar car={car} key={i} setIsCar={setIsCar} setIsEdit={setIsEdit} setCarToEdit={setCarToEdit}/>
                 ))
               }
             </div>
          
         </div>
+
+        {
+          modal&&<>
+
+                    {
+                      !isCar?<Modal title='Услуга' onClose={сloseModalHandler}>
+                               <ServiceForm isEdit={isEdit} service={typeToEdit}/>
+                            </Modal>
+                            :<Modal title='Техника' onClose={сloseModalHandler}>
+                                 <CarForm isEdit={isEdit} car={carToEdit}/>
+                            </Modal>
+                    }
+                </>
+
+                  
+        }
     </div>
 )
 }

@@ -47,9 +47,10 @@ const logoutHandler = ()=>{
       {
        !isAdmin?<OrdersTable orders={orders}/>
        : <div className=" flex flex-col pt-14 gap-10 items-center justify-center font-bold text-xl text-gray-700">
-            <NavLink className=' text-center px-10 py-5 bg-green-400 rounded-md w-1/2' to={'/admin'}>Просмотр заявок</NavLink>
-            <NavLink className='text-center px-10 py-5 bg-orange-400 rounded-md w-1/2' to={'/redact'}>Редактирование данных</NavLink>
-            <button onClick={logoutHandler} className='   px-10 py-5 bg-red-300 rounded-md w-1/2' >Выйти</button>
+            <NavLink className=' text-center px-10 py-5 bg-green-400 rounded-md w-1/2 hover:bg-green-300 transition-colors' to={'/admin'}>Просмотр заявок</NavLink>
+            <NavLink className='text-center px-10 py-5 bg-orange-400 rounded-md w-1/2 hover:bg-orange-300 transition-colors' to={'/redact'}>Редактирование данных</NavLink>
+            <NavLink className='text-center px-10 py-5 bg-orange-400 rounded-md w-1/2 hover:bg-orange-300 transition-colors' to={'/admin-comments'}>Отзывы</NavLink>
+            <button onClick={logoutHandler} className='   px-10 py-5 bg-red-300 rounded-md w-1/2 hover:bg-red-200 transition-colors' >Выйти</button>
 
        </div>
       } 

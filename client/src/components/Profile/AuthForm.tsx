@@ -55,7 +55,7 @@ const AuthForm = () => {
         
         catch(err:any){
           const error = err.response?.data.message
-          toast.error(error.toString())
+          toast.error('Неверные данные!')
         }  
     } 
 

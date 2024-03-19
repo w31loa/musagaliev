@@ -19,7 +19,8 @@ export class RequestService {
   async findAll() {
     return  await this.prisma.request.findMany({
       include:{
-        car: true
+        car: true,
+        comment: true
       },
       orderBy:{
         status: 'desc'
@@ -37,7 +38,8 @@ export class RequestService {
         userId
       },
       include:{
-        car: true
+        car: true,
+        comment: true
       }
     })
   }

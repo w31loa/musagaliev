@@ -50,7 +50,7 @@ export class CarService {
     return `This action returns a #${id} car`;
   }
 
-  async update(id: number, updateCarDto: Partial<Car>) {
+  async update(id: number, updateCarDto: Partial<Car> , image) {
    
     const car = await this.prisma.car.findFirst({
       where:{
@@ -58,8 +58,24 @@ export class CarService {
       }
     })
 
+    const type = await this.prisma.type.findFirst({
+      where:{
+        cars:{
+          some:{
+            id:car.id
+          }
+        }
+      }
+    })
+
     if(!car){
       throw new HttpException('Такая техники не существует', HttpStatus.BAD_REQUEST)
+    }
+
+    if(image){
+      const filePath = await this.file.createFile(image , car.title,type.title  )
+      updateCarDto.img = filePath
+      console.log(filePath)
     }
 
     return await this.prisma.car.update({

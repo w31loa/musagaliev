@@ -26,4 +26,21 @@ export interface IType{
     phoneNumber: string
     status: string
     userId: number
+    comment: IComment|null
+  }
+
+  export interface IComment{
+    id:number
+    requestId: number
+    text: string
+    isPublished: boolean
+    request:{
+      name: string
+      car:{
+        title: string
+        type:{
+          title: string
+        }
+      }
+    }
   }

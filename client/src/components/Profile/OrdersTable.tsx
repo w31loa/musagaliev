@@ -70,7 +70,7 @@ const OrdersTable = ({orders}:ITableProps) => {
 
             {
                 isAuth&& 
-                <div className="flex justify-end">
+                <div className="mb-20 flex justify-end">
                     <button onClick={logoutHandler} className='flex px-10 py-3 bg-red-300 rounded-md' >Выйти</button>
                 </div>
             }

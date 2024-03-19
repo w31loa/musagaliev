@@ -25,9 +25,10 @@ export class CarController {
     return this.carService.findOne(+id);
   }
 
+  @UseInterceptors(FileInterceptor('image'))
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCarDto: UpdateCarDto) {
-    return this.carService.update(+id, updateCarDto);
+  update(@Param('id') id: string, @Body() updateCarDto: UpdateCarDto , @UploadedFile()image?) {
+    return this.carService.update(+id, updateCarDto , image);
   }
 
   @Delete(':id')

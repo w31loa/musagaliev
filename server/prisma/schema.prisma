@@ -38,7 +38,7 @@ model Car{
   price String
   img String
 
-  type Type @relation(fields: [typeId], references: [id])
+  type Type @relation(fields: [typeId], references: [id] , onDelete: Cascade)
   typeId Int
   requests Request[]
 
@@ -69,10 +69,21 @@ model Request{
   car Car? @relation(fields: [carId], references: [id])
   carId Int? 
 
+  comment Comment?
+
 }
  
 
+model Comment{
+  id Int @default(autoincrement()) @id
 
+  request Request @relation(fields: [requestId], references: [id])
+  requestId Int @unique 
+
+  text String
+
+  isPublished Boolean @default(false)
+}
 
 
 

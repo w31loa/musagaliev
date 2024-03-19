@@ -8,17 +8,16 @@ interface Props{
         id:number
         title: string
     }
-    isEdit: boolean,
-    setIsModalOpen: any
+    isEdit: boolean
 }
 
-const ServiceForm = ({service, isEdit , setIsModalOpen}:Props) => {
+const ServiceForm = ({service, isEdit }:Props) => {
 
-    const [title,setTitle] = useState('')
+    const [title,setTitle] = useState(isEdit?service?.title:'')
+
 
     
     const addHandler = (e)=>{
-        e.preventDefault()
         const data = {
             title: title,
         }
@@ -28,7 +27,6 @@ const ServiceForm = ({service, isEdit , setIsModalOpen}:Props) => {
     }
 
     const updHandler = (e)=>{
-        e.preventDefault()
         const data = {
             title: title,
         }
@@ -37,8 +35,10 @@ const ServiceForm = ({service, isEdit , setIsModalOpen}:Props) => {
         toast.success('Услуга изменена')
     }
 
+ 
+
   return (
-    <div className="absolute top-0 left-0 ring-0 bottom-0">
+    <div className="">
         <form onSubmit={isEdit?updHandler:addHandler} className='bg-white'>
             <div className="mb-5">    
                     <label htmlFor="email" className="block    mb-2 text-xl font-medium text-gray-900" >Название</label>
@@ -46,9 +46,10 @@ const ServiceForm = ({service, isEdit , setIsModalOpen}:Props) => {
                     onChange={(e)=>{
                         setTitle(e.target.value)
                     }}
+                    value={title}
                     type="text" id="text" className= " py-2 bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-10"  required />
                 </div>   
-                <button className="flex w-full justify-center p-2 bg-green-400 rounded-md"  ><span>Добавить</span><IoMdAdd className="text-2xl  text-center" /></button>
+                <button className="flex w-full justify-center p-2 bg-green-400 rounded-md"  ><span>{isEdit?"Изменть":"Добавить"}</span><IoMdAdd className="text-2xl  text-center" /></button>
         </form>
     </div>
 

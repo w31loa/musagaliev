@@ -7,6 +7,9 @@ import Profile, { ordersLoader } from "../pages/Profile";
 import Auth from "../pages/Auth";
 import Admin, { adminLoader } from "../pages/Admin";
 import Redact from "../pages/Redact";
+import Comments, { commentLoader } from "../pages/Comments";
+import AdminComments from "../pages/AdminComments";
+import { allCommentsLoader } from "../components/Admin/Comments/CommentsTable";
 
 export const router = createBrowserRouter([
     {
@@ -21,6 +24,11 @@ export const router = createBrowserRouter([
                 path: 'services',
                 element: <Services/>,
                 loader: servicesLoader
+            },
+            {
+                path: 'comments',
+                element: <Comments/>,
+                loader: commentLoader
             },
             {
                 path: 'contacts',
@@ -43,6 +51,11 @@ export const router = createBrowserRouter([
             {
                 path: 'redact',
                 element: <Redact/>
+            },
+            {
+                path: 'admin-comments',
+                element: <AdminComments/>,
+                loader: allCommentsLoader
             }
         ]
     }

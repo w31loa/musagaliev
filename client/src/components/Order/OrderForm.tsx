@@ -43,7 +43,7 @@ const OrderForm = ({carId}) => {
         }
 
         console.log(data)
-        // instance.post('/request' , data)
+        instance.post('/request' , data)
         toast.success('Заявка отправлена!')
         
 
