@@ -42,11 +42,11 @@ const CommentTableRow = ({comment}:Iprop) => {
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {comment.request.car.type.title}
+            {comment.request.car?.type?.title?comment.request.car?.type?.title : 'Услуга больше не предоставляется'}
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
-            {comment.request.car.title}
+            {comment.request.car?.title?comment.request.car?.title:" Техника больше не используется" }
 
         </td>
         <td className="px-6 py-4 text-gray-900 text-base text-center">
